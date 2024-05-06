@@ -1,0 +1,72 @@
+<h1>
+  {{(heroe.id)? 'Editar': 'Nuevo'}} Heroe <small>{{ heroe.superhero }}</small>
+</h1>
+
+<div class="row justify-content-between">
+  <div class="col-sm-12 col-md-6">
+    <div class="row">
+      <mat-form-field class="col-md-6">
+        <mat-label>SuperHeroe</mat-label>
+        <input matInput [(ngModel)]="heroe.superhero" type="text" required />
+      </mat-form-field>
+      <mat-form-field class="col-md-6">
+        <mat-label>Alter Ego</mat-label>
+        <input matInput [(ngModel)]="heroe.alter_ego" type="text" required />
+      </mat-form-field>
+    </div>
+
+    <div class="col-12">
+      <mat-form-field class="col-12">
+        <mat-label>Primera Aparición</mat-label>
+        <input
+          matInput
+          [(ngModel)]="heroe.first_appearance"
+          type="text"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <mat-label>Personajes</mat-label>
+        <input matInput [(ngModel)]="heroe.characters" type="text" required />
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <mat-label>Creador</mat-label>
+        <mat-select [(ngModel)]="heroe.publisher" required>
+          <mat-option
+            *ngFor="let publisher of publishers"
+            [value]="publisher.id"
+          >
+            {{ publisher.desc }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col-12">
+        <mat-label>Foto URL</mat-label>
+        <input matInput [(ngModel)]="heroe.alt_img" type="url" required />
+      </mat-form-field>
+      <br />
+
+      <div class="row justify-content-around">
+        <button
+          mat-raised-button
+          (click)="guardar()"
+          color="primary"
+          class="col-5"
+        >
+          <mat-icon>edit</mat-icon>
+          {{(heroe.id)? 'Actualizar': 'Crear'}}
+        </button>
+
+        <button *ngIf="heroe.id" mat-raised-button color="warn" class="col-5" (click)="eliminar()">
+          <mat-icon>remove</mat-icon>
+          Borrar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 margin">
+    <div class="col-sm-4 col-md-4 mx-auto">
+      <img class="img-fluid rounded" [src]="heroe | imageHeroe" alt="" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<mat-grid-list cols="1" *ngIf="!heroe; else divHero">
+  <mat-grid-tile>
+    <mat-spinner></mat-spinner>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<ng-template #divHero>
+    
+  <div class="hero row row-cols-2 d-flex justify-content-center">
+    <div class="col-sm-4 col-md-2 text-center">
+        <img class="img-fluid rounded" [src]="heroe|imageHeroe" [alt]="heroe.superhero">
+    </div>
+    <div class="col-sm-2 col-md-2  d-flex flex-wrap align-content-center">
+        <p><strong>Nombre: </strong>{{heroe.superhero}}</p>
+        <p><strong>Alter Ego: </strong>{{heroe.alter_ego}}</p>
+        <p><strong>Editorial: </strong>{{heroe.publisher}}</p>
+        <p><strong>Primera Aparicion: </strong>{{heroe.first_appearance}}</p>
+        <p><strong>Personajes: </strong>{{heroe.characters}}</p>
+    </div>
+  </div>
+
+</ng-template>
